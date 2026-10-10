@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Asks search engines not to list this site. -->
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Appleacorn Projects</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✒️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    // Apply saved reading settings before the page paints (avoids a white flash in dark mode).
+    (function () {
+      var s = {};
+      try { s = JSON.parse(localStorage.getItem('writing-site-settings')) || {}; } catch (e) {}
+      var theme = s.theme || 'system';
+      if (theme === 'system') theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      var r = document.documentElement;
+      r.dataset.theme = theme;
+      r.dataset.font = s.font || 'serif';
+      r.style.setProperty('--scale', (s.size || 100) / 100);
+      r.style.setProperty('--leading', s.leading || 1.75);
+      r.style.setProperty('--measure', (s.width || 38) + 'em');
+    })();
+  </script>
+</head>
+<body>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <aside class="sidebar" id="sidebar" aria-label="Works">
+    <div class="sidebar-head">
+      <a href="#/" class="brand" id="brand">Appleacorn Projects</a>
+      <button class="icon-btn only-mobile" id="close-sidebar" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <nav id="nav"></nav>
+    <div class="sidebar-foot" id="sidebar-foot"></div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <div class="shell">
+    <header class="topbar">
+      <button class="icon-btn only-mobile" id="open-sidebar" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="crumb" id="crumb"></div>
+      <button class="icon-btn" id="open-settings" aria-label="Reading settings" aria-expanded="false" aria-controls="settings">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+      </button>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <div id="content" class="content"></div>
+    </main>
+  </div>
+
+  <section class="settings" id="settings" role="dialog" aria-label="Reading settings" hidden>
+    <div class="settings-head">
+      <h2>Reading settings</h2>
+      <button class="icon-btn" id="close-settings" aria-label="Close settings">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="setting">
+      <span class="label">Theme</span>
+      <div class="seg" data-setting="theme">
+        <button data-value="light">Light</button>
+        <button data-value="sepia">Sepia</button>
+        <button data-value="dark">Dark</button>
+        <button data-value="system">Auto</button>
+      </div>
+    </div>
+
+    <div class="setting">
+      <span class="label">Text size <output id="size-out">100%</output></span>
+      <div class="range-row">
+        <button class="icon-btn small" id="size-down" aria-label="Smaller text">A</button>
+        <input type="range" id="size" min="80" max="160" step="5" aria-label="Text size">
+        <button class="icon-btn big" id="size-up" aria-label="Larger text">A</button>
+      </div>
+    </div>
+
+    <div class="setting">
+      <span class="label">Font</span>
+      <div class="seg" data-setting="font">
+        <button data-value="serif" class="f-serif">Serif</button>
+        <button data-value="sans" class="f-sans">Sans</button>
+      </div>
+    </div>
+
+    <div class="setting">
+      <span class="label">Line spacing</span>
+      <div class="seg" data-setting="leading">
+        <button data-value="1.5">Tight</button>
+        <button data-value="1.75">Normal</button>
+        <button data-value="2.05">Loose</button>
+      </div>
+    </div>
+
+    <div class="setting">
+      <span class="label">Page width</span>
+      <div class="seg" data-setting="width">
+        <button data-value="32">Narrow</button>
+        <button data-value="38">Medium</button>
+        <button data-value="48">Wide</button>
+      </div>
+    </div>
+
+    <button class="text-btn" id="reset-settings">Reset to defaults</button>
+  </section>
+
+  <script src="js/vendor/marked.umd.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

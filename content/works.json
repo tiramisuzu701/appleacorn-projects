@@ -1,0 +1,12 @@
+{
+  "site": {
+    "title": "Appleacorn Projects",
+    "tagline": "Stories, drafts, and works in progress.",
+    "homePage": "content/home.md",
+    "footer": "All writing © Appleacorn. Please don't repost."
+  },
+
+  "works": [
+    
+  ]
+}
